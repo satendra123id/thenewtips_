@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The New Tips | Cyber Security & Digital Hub</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Official portal of The New Tips. Access Ethical Hacking courses, verified earning portals, YouTube channels, and social updates.">
+    <meta name="keywords" content="The New Tips, Ethical Hacking, Tech Tutorials, Free Earning, Cyber Security">
+    <meta name="robots" content="index, follow">
+
+    <!-- Fonts & Official Icons (FontAwesome 6) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #020617;
+            --accent-cyan: #00f2fe;
+            --accent-blue: #3b82f6;
+            --accent-purple: #9d4edd;
+            --card-bg: rgba(15, 23, 42, 0.65);
+            --border-color: rgba(0, 242, 254, 0.3);
+            --text-main: #ffffff;
+            --text-sub: #cbd5e1;
+
+            /* Brand Colors for Logos */
+            --youtube-red: #FF0000;
+            --telegram-blue: #229ED9;
+            --whatsapp-green: #25D366;
+            --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --hacking-green: #00ff66;
+            --earning-gold: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Fixed Fullscreen 3D Canvas Background */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Foreground Content Layer */
+        .wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Header */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(2, 6, 23, 0.75);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+            padding-bottom: 40px;
+        }
+
+        .hero-badge {
+            padding: 8px 18px;
+            border-radius: 30px;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.4);
+            color: var(--accent-cyan);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+        }
+
+        .hero-title {
+            font-size: clamp(2.3rem, 5.5vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 18px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            max-width: 650px;
+            color: var(--text-sub);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* -------------------------------------------------------------
+           HACKER MASK GLOWING BOX FRAME
+        ------------------------------------------------------------- */
+        .hacker-box-card {
+            width: 100%;
+            max-width: 360px;
+            height: 240px;
+            border-radius: 24px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(0, 242, 254, 0.5);
+            box-shadow: 0 0 35px rgba(0, 242, 254, 0.35), inset 0 0 25px rgba(157, 78, 221, 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 25px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hacker-box-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 50px rgba(0, 242, 254, 0.5), inset 0 0 35px rgba(0, 242, 254, 0.4);
+        }
+
+        /* Hacker Mask Image & Glow Effect */
+        .hacker-mask-img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 18px var(--accent-cyan)) drop-shadow(0 0 30px var(--accent-purple));
+            animation: pulseGlow 3s infinite alternate ease-in-out;
+            z-index: 2;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 15px var(--accent-cyan)) drop-shadow(0 0 25px var(--accent-purple));
+            }
+            100% {
+                transform: scale(1.06);
+                filter: drop-shadow(0 0 25px var(--accent-cyan)) drop-shadow(0 0 45px #00f2fe);
+            }
+        }
+
+        /* Animated Scanline Overlay inside Hacker Box */
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            opacity: 0.8;
+            animation: scan 2.5s infinite linear;
+            z-index: 3;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        .scroll-indicator {
+            color: var(--accent-cyan);
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* Section Layouts */
+        .section {
+            padding: 70px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        /* Glassmorphism Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 25px;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 28px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(0, 242, 254, 0.6);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 242, 254, 0.25);
+            background: rgba(15, 23, 42, 0.85);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        /* Official Brand Logos Styling */
+        .brand-logo-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover .brand-logo-box {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Custom Logo Colors */
+        .logo-hacking { background: rgba(0, 255, 102, 0.15); color: var(--hacking-green); border-color: rgba(0, 255, 102, 0.4); }
+        .logo-earning { background: rgba(245, 158, 11, 0.15); color: var(--earning-gold); border-color: rgba(245, 158, 11, 0.4); }
+        .logo-youtube { background: rgba(255, 0, 0, 0.15); color: var(--youtube-red); border-color: rgba(255, 0, 0, 0.4); }
+        .logo-telegram { background: rgba(34, 158, 217, 0.15); color: var(--telegram-blue); border-color: rgba(34, 158, 217, 0.4); }
+        .logo-whatsapp { background: rgba(37, 211, 102, 0.15); color: var(--whatsapp-green); border-color: rgba(37, 211, 102, 0.4); }
+        .logo-instagram { 
+            background: var(--insta-gradient); 
+            color: #ffffff; 
+            border: none;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tag-red { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+        .tag-green { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .tag-blue { background: rgba(0, 242, 254, 0.2); color: #00f2fe; border: 1px solid rgba(0, 242, 254, 0.4); }
+
+        .card-body h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-body p {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-sub);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-title { font-size: 2.1rem; }
+            .hacker-box-card { width: 90%; height: 210px; }
+            .hacker-mask-img { width: 130px; height: 130px; }
+            .section { padding: 50px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 3D Background Canvas -->
+    <div id="canvas-container"></div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="brand"><i class="fa-solid fa-terminal"></i> The New Tips</a>
+            <ul class="nav-links">
+                <li><a href="#featured">Courses & Portals</a></li>
+                <li><a href="#youtube">YouTube</a></li>
+                <li><a href="#community">Social Networks</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-badge">
+                <i class="fa-solid fa-shield-halved"></i> Cybersecurity & Digital Tech Hub
+            </div>
+            <h1 class="hero-title">Welcome to <br><span>The New Tips</span></h1>
+            <p class="hero-desc">Explore premium Ethical Hacking courses, verified online earning methods, YouTube video guides, and official social communities.</p>
+            
+            <!-- Hacker Mask Glowing Box -->
+            <div class="hacker-box-card">
+                <div class="scanline"></div>
+                <!-- Hacker Mask Transparent Vector Image -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg" alt="Hacker Mask Logo" class="hacker-mask-img">
+            </div>
+
+            <div class="scroll-indicator">
+                <span>Scroll Down for Interactive World</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- Section 1: Courses & Portals -->
+        <section class="section" id="featured">
+            <div class="section-header">
+                <h2>Courses & Portals</h2>
+                <p>Learn cybersecurity skills and access verified digital earning platforms.</p>
+            </div>
+            <div class="cards-grid">
+                
+                <!-- Ethical Hacking Card -->
+                <a href="https://the-new-tips-50012442923.asia-southeast1.run.app/" target="_blank" class="glass-card">
+                    <div>
+                        <div class="card-top">
+                            <!-- Official Hacking Logo -->
+                            <div class="brand-logo-box logo-hacking">
+                                <i class="fa-solid fa-user-ninja"></i>
+                            </div>
+                            <span class="card-tag tag-red">Live Course</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Ethical Hacking Course</h3>
+                            <p>Master Penetration Testing, Cyber Security fundamentals, and Ethical Hacking labs.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span>Access Course</span> <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- Free Earning Portal Card -->
+                <a href="https://openinapp.link/b8yq5" target="_blank" class="glass-card">
+                    <div>
+                        <div class="card-top">
+                            <!-- Official Earning Portal Logo -->
+                            <div class="brand-logo-box logo-earning">
+                                <i class="fa-solid fa-sack-dollar"></i>
+                            </div>
+                            <span class="card-tag tag-green">Verified</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Free Earning Portal</h3>
+                            <p>Discover real online earning tasks, reward platforms, and verified payouts.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span>Visit Portal</span> <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Section 2: YouTube Channels -->
+        <section class="section" id="youtube">
+            <div class="section-header">
+                <h2>YouTube Channels</h2>
+                <p>Watch full video tutorials, tech reviews, and quick tips.</p>
+            </div>
+            <div class="cards-grid">
+                
+                <!-- YouTube Main Channel Card -->
+                <a href="https://yt.openinapp.co/raehk" target="_blank" class="glass-card">
+                    <div>
+                        <div class="card-top">
+                            <!-- Official YouTube Logo -->
+                            <div class="brand-logo-box logo-youtube">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                            <span class="card-tag tag-red">Main Channel</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Main YouTube Channel</h3>
+                            <p>In-depth tech tutorials, ethical hacking tricks, and video guides.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span>Subscribe Channel</span> <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- YouTube Second Channel Card -->
+                <a href="https://yt.openinapp.co/e56aw" target="_blank" class="glass-card">
+                    <div>
+                        <div class="card-top">
+                            <!-- Official YouTube Shorts Logo -->
+                            <div class="brand-logo-box logo-youtube">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                            <span class="card-tag tag-blue">Secondary</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Second YouTube Channel</h3>
+                            <p>Short tips, quick tech updates, and exclusive channel announcements.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span>Watch Shorts</span> <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Section 3: Social Communities -->
+        <section class="section" id="community">
+            <div class="section-header">
+                <h2>Join Our Social Network</h2>
+                <p>Stay connected with us across all social platforms.</p>
+            </div>
+            <div class="cards-grid">
+                
+                <!-- Telegram Channel Card -->
+                <a href="https://telegram.openinapp.co/1d61o" target="_blank" class="glass-card">
+                    <div>
+                        <div class="card-top">
+                            <!-- Official Telegram
