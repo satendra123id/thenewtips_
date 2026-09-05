@@ -3,34 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The New Tips | Cyber Security & Digital Hub</title>
-
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Official portal of The New Tips. Access Ethical Hacking courses, verified earning portals, YouTube channels, and social updates.">
-    <meta name="keywords" content="The New Tips, Ethical Hacking, Tech Tutorials, Free Earning, Cyber Security">
-    <meta name="robots" content="index, follow">
-
-    <!-- Fonts & Official Icons (FontAwesome 6) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Three.js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <title>The New Tips | Ultra 3D Cyber Hub</title>
 
     <style>
         :root {
             --bg-color: #020617;
             --accent-cyan: #00f2fe;
-            --accent-blue: #3b82f6;
+            --accent-green: #00ff66;
             --accent-purple: #9d4edd;
-            --card-bg: rgba(15, 23, 42, 0.65);
-            --border-color: rgba(0, 242, 254, 0.3);
+            --card-bg: rgba(15, 23, 42, 0.85);
             --text-main: #ffffff;
             --text-sub: #cbd5e1;
 
-            /* Brand Colors for Logos */
             --youtube-red: #FF0000;
             --telegram-blue: #229ED9;
             --whatsapp-green: #25D366;
@@ -43,7 +27,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             scroll-behavior: smooth;
         }
 
@@ -53,8 +37,8 @@
             overflow-x: hidden;
         }
 
-        /* Fixed Fullscreen 3D Canvas Background */
-        #canvas-container {
+        /* Highlighted 3D Canvas Background */
+        #canvas-3d {
             position: fixed;
             top: 0;
             left: 0;
@@ -64,7 +48,6 @@
             pointer-events: none;
         }
 
-        /* Foreground Content Layer */
         .wrapper {
             position: relative;
             z-index: 2;
@@ -74,7 +57,6 @@
             padding: 0 20px;
         }
 
-        /* Navigation Header */
         nav {
             position: fixed;
             top: 0;
@@ -84,7 +66,7 @@
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(2, 6, 23, 0.75);
+            background: rgba(2, 6, 23, 0.9);
         }
 
         .nav-container {
@@ -99,7 +81,7 @@
         .brand {
             font-size: 1.3rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: flex;
@@ -126,7 +108,6 @@
             color: var(--accent-cyan);
         }
 
-        /* Hero Section */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -134,23 +115,23 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-top: 80px;
+            padding-top: 90px;
             padding-bottom: 40px;
         }
 
         .hero-badge {
             padding: 8px 18px;
             border-radius: 30px;
-            background: rgba(0, 242, 254, 0.1);
-            border: 1px solid rgba(0, 242, 254, 0.4);
-            color: var(--accent-cyan);
+            background: rgba(0, 255, 102, 0.1);
+            border: 1px solid rgba(0, 255, 102, 0.4);
+            color: var(--accent-green);
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 25px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.25);
         }
 
         .hero-title {
@@ -162,7 +143,7 @@
         }
 
         .hero-title span {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -175,21 +156,17 @@
             margin-bottom: 30px;
         }
 
-        /* -------------------------------------------------------------
-           HACKER MASK GLOWING BOX FRAME
-        ------------------------------------------------------------- */
         .hacker-box-card {
             width: 100%;
             max-width: 360px;
-            height: 240px;
+            height: 250px;
             border-radius: 24px;
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(10, 15, 30, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 2px solid rgba(0, 242, 254, 0.5);
-            box-shadow: 0 0 35px rgba(0, 242, 254, 0.35), inset 0 0 25px rgba(157, 78, 221, 0.25);
+            border: 2px solid rgba(0, 255, 102, 0.5);
+            box-shadow: 0 0 45px rgba(0, 255, 102, 0.3), inset 0 0 35px rgba(0, 242, 254, 0.25);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
@@ -199,279 +176,224 @@
         }
 
         .hacker-box-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 50px rgba(0, 242, 254, 0.5), inset 0 0 35px rgba(0, 242, 254, 0.4);
+            transform: scale(1.04);
+            box-shadow: 0 0 60px rgba(0, 255, 102, 0.5);
         }
 
-        /* Hacker Mask Image & Glow Effect */
-        .hacker-mask-img {
+        .hacker-svg-icon {
             width: 150px;
             height: 150px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 18px var(--accent-cyan)) drop-shadow(0 0 30px var(--accent-purple));
-            animation: pulseGlow 3s infinite alternate ease-in-out;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 102, 0.8));
+            animation: hackerPulse 2.5s infinite alternate ease-in-out;
             z-index: 2;
         }
 
-        @keyframes pulseGlow {
-            0% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 15px var(--accent-cyan)) drop-shadow(0 0 25px var(--accent-purple));
-            }
-            100% {
-                transform: scale(1.06);
-                filter: drop-shadow(0 0 25px var(--accent-cyan)) drop-shadow(0 0 45px #00f2fe);
-            }
+        @keyframes hackerPulse {
+            0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(0, 255, 102, 0.6)); }
+            100% { transform: scale(1.06); filter: drop-shadow(0 0 35px rgba(0, 242, 254, 0.95)); }
         }
 
-        /* Animated Scanline Overlay inside Hacker Box */
         .scanline {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-            opacity: 0.8;
-            animation: scan 2.5s infinite linear;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-green), var(--accent-cyan), transparent);
+            animation: scan 2.2s infinite linear;
             z-index: 3;
         }
 
-        @keyframes scan {
-            0% { top: 0%; }
-            100% { top: 100%; }
-        }
+        @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
 
-        .scroll-indicator {
-            color: var(--accent-cyan);
-            font-size: 0.85rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            animation: bounce 2s infinite;
-        }
+        .section { padding: 60px 0; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+        .section-header p { color: var(--text-sub); font-size: 0.95rem; }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); }
-            60% { transform: translateY(-4px); }
-        }
-
-        /* Section Layouts */
-        .section {
-            padding: 70px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 45px;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .section-header p {
-            color: var(--text-sub);
-            font-size: 0.95rem;
-        }
-
-        /* Glassmorphism Cards Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 25px;
+            gap: 22px;
         }
 
         .glass-card {
             background: var(--card-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 20px;
-            padding: 28px;
+            padding: 26px;
             text-decoration: none;
             color: var(--text-main);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         .glass-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(0, 242, 254, 0.6);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 242, 254, 0.25);
-            background: rgba(15, 23, 42, 0.85);
+            transform: translateY(-6px);
+            border-color: rgba(0, 255, 102, 0.6);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 102, 0.2);
         }
 
-        .card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
+        /* YouTube Cards Highlight */
+        .youtube-card {
+            border-color: rgba(255, 0, 0, 0.4);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.18);
         }
 
-        /* Official Brand Logos Styling */
+        .youtube-card:hover {
+            border-color: rgba(255, 0, 0, 0.85);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 0, 0, 0.45);
+        }
+
+        .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
         .brand-logo-box {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease;
+            width: 54px; height: 54px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
-        .glass-card:hover .brand-logo-box {
-            transform: scale(1.1) rotate(5deg);
-        }
+        .logo-hacking { background: rgba(0, 255, 102, 0.15); color: var(--hacking-green); border-color: rgba(0, 255, 102, 0.5); }
+        .logo-earning { background: rgba(245, 158, 11, 0.15); color: var(--earning-gold); border-color: rgba(245, 158, 11, 0.5); }
+        .logo-youtube { background: rgba(255, 0, 0, 0.2); color: var(--youtube-red); border-color: rgba(255, 0, 0, 0.6); }
+        .logo-telegram { background: rgba(34, 158, 217, 0.2); color: var(--telegram-blue); border-color: rgba(34, 158, 217, 0.5); }
+        .logo-whatsapp { background: rgba(37, 211, 102, 0.2); color: var(--whatsapp-green); border-color: rgba(37, 211, 102, 0.5); }
+        .logo-instagram { background: var(--insta-gradient); color: #ffffff; border: none; }
 
-        /* Custom Logo Colors */
-        .logo-hacking { background: rgba(0, 255, 102, 0.15); color: var(--hacking-green); border-color: rgba(0, 255, 102, 0.4); }
-        .logo-earning { background: rgba(245, 158, 11, 0.15); color: var(--earning-gold); border-color: rgba(245, 158, 11, 0.4); }
-        .logo-youtube { background: rgba(255, 0, 0, 0.15); color: var(--youtube-red); border-color: rgba(255, 0, 0, 0.4); }
-        .logo-telegram { background: rgba(34, 158, 217, 0.15); color: var(--telegram-blue); border-color: rgba(34, 158, 217, 0.4); }
-        .logo-whatsapp { background: rgba(37, 211, 102, 0.15); color: var(--whatsapp-green); border-color: rgba(37, 211, 102, 0.4); }
-        .logo-instagram { 
-            background: var(--insta-gradient); 
-            color: #ffffff; 
-            border: none;
-        }
-
-        .card-tag {
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 5px 12px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .tag-red { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
-        .tag-green { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .card-tag { font-size: 0.72rem; font-weight: 700; padding: 5px 12px; border-radius: 20px; text-transform: uppercase; }
+        .tag-red { background: rgba(255, 0, 0, 0.2); color: #ff4d4d; border: 1px solid rgba(255, 0, 0, 0.5); }
+        .tag-green { background: rgba(0, 255, 102, 0.2); color: #00ff66; border: 1px solid rgba(0, 255, 102, 0.4); }
         .tag-blue { background: rgba(0, 242, 254, 0.2); color: #00f2fe; border: 1px solid rgba(0, 242, 254, 0.4); }
 
-        .card-body h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
+        .card-body h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+        .card-body p { color: var(--text-sub); font-size: 0.88rem; line-height: 1.5; margin-bottom: 18px; }
+        .card-footer { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: var(--accent-green); }
+        .youtube-footer { color: #ff4d4d; }
 
-        .card-body p {
-            color: var(--text-sub);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .card-footer {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent-cyan);
-        }
-
-        footer {
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-sub);
-            font-size: 0.85rem;
-        }
+        footer { padding: 35px 0; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-sub); font-size: 0.85rem; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero-title { font-size: 2.1rem; }
-            .hacker-box-card { width: 90%; height: 210px; }
-            .hacker-mask-img { width: 130px; height: 130px; }
-            .section { padding: 50px 0; }
+            .hacker-box-card { width: 92%; height: 220px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 3D Background Canvas -->
-    <div id="canvas-container"></div>
+    <!-- Native High-Glow 3D Engine Canvas -->
+    <canvas id="canvas-3d"></canvas>
 
-    <!-- Navigation Bar -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="brand"><i class="fa-solid fa-terminal"></i> The New Tips</a>
+            <a href="#" class="brand">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                The New Tips
+            </a>
             <ul class="nav-links">
+                <li><a href="#youtube">YouTube Channels</a></li>
                 <li><a href="#featured">Courses & Portals</a></li>
-                <li><a href="#youtube">YouTube</a></li>
                 <li><a href="#community">Social Networks</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="wrapper">
-        
-        <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-badge">
-                <i class="fa-solid fa-shield-halved"></i> Cybersecurity & Digital Tech Hub
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4z"/></svg>
+                Highlighted 3D Cyber Engine
             </div>
             <h1 class="hero-title">Welcome to <br><span>The New Tips</span></h1>
-            <p class="hero-desc">Explore premium Ethical Hacking courses, verified online earning methods, YouTube video guides, and official social communities.</p>
+            <p class="hero-desc">Interactive High-Level 3D geometry engine with verified tech tutorials, YouTube channels, and cybersecurity portals.</p>
             
-            <!-- Hacker Mask Glowing Box -->
             <div class="hacker-box-card">
                 <div class="scanline"></div>
-                <!-- Hacker Mask Transparent Vector Image -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Anonymous_emblem.svg" alt="Hacker Mask Logo" class="hacker-mask-img">
-            </div>
-
-            <div class="scroll-indicator">
-                <span>Scroll Down for Interactive World</span>
-                <i class="fa-solid fa-chevron-down"></i>
+                <svg class="hacker-svg-icon" viewBox="0 0 100 100" fill="none">
+                    <path d="M50 8C30 8 18 22 15 42C13 55 18 72 25 85C27 88 33 90 50 90C67 90 73 88 75 85C82 72 87 55 85 42C82 22 70 8 50 8Z" fill="#030712" stroke="#00ff66" stroke-width="2.5"/>
+                    <path d="M22 45C22 30 32 18 50 18C68 18 78 30 78 45C78 62 70 82 50 82C30 82 22 62 22 45Z" fill="#0b1329" stroke="#00f2fe" stroke-width="1.5"/>
+                    <path d="M30 46C33 42 42 42 44 47C40 50 33 49 30 46Z" fill="#00ff66"/>
+                    <path d="M70 46C67 42 58 42 56 47C60 50 67 49 70 46Z" fill="#00ff66"/>
+                    <circle cx="37" cy="46" r="2.5" fill="#ffffff"/>
+                    <circle cx="63" cy="46" r="2.5" fill="#ffffff"/>
+                    <path d="M50 48L47 58H53L50 48Z" fill="#00f2fe"/>
+                    <path d="M35 68C42 75 58 75 65 68C58 71 42 71 35 68Z" fill="#00ff66"/>
+                </svg>
             </div>
         </section>
 
-        <!-- Section 1: Courses & Portals -->
+        <!-- YouTube Section (Both Channels Included) -->
+        <section class="section" id="youtube">
+            <div class="section-header">
+                <h2>Official YouTube Channels</h2>
+                <p>Subscribe to both channels for full tech tutorials, cybersecurity labs, and trending shorts.</p>
+            </div>
+            <div class="cards-grid">
+                <!-- Channel 1: Main YouTube Channel -->
+                <a href="https://youtube.com/@thenewtips" target="_blank" class="glass-card youtube-card">
+                    <div>
+                        <div class="card-top">
+                            <div class="brand-logo-box logo-youtube">
+                                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            </div>
+                            <span class="card-tag tag-red">Main Channel</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>The New Tips — Main</h3>
+                            <p>Full length step-by-step videos on cybersecurity, ethical hacking, software tutorials, and tech tips.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer youtube-footer"><span>Subscribe Main Channel</span> &rarr;</div>
+                </a>
+
+                <!-- Channel 2: Shorts / Secondary Channel -->
+                <a href="https://youtube.com/@tipsshort" target="_blank" class="glass-card youtube-card">
+                    <div>
+                        <div class="card-top">
+                            <div class="brand-logo-box logo-youtube">
+                                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            </div>
+                            <span class="card-tag tag-red">Shorts Channel</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Tips Short — Shorts</h3>
+                            <p>Quick 60-second tech tricks, viral shorts, instant updates, and daily coding hacks.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer youtube-footer"><span>Subscribe Shorts Channel</span> &rarr;</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Courses & Portals -->
         <section class="section" id="featured">
             <div class="section-header">
                 <h2>Courses & Portals</h2>
-                <p>Learn cybersecurity skills and access verified digital earning platforms.</p>
+                <p>Learn cybersecurity skills and access verified digital portals.</p>
             </div>
             <div class="cards-grid">
-                
-                <!-- Ethical Hacking Card -->
                 <a href="https://the-new-tips-50012442923.asia-southeast1.run.app/" target="_blank" class="glass-card">
                     <div>
                         <div class="card-top">
-                            <!-- Official Hacking Logo -->
                             <div class="brand-logo-box logo-hacking">
-                                <i class="fa-solid fa-user-ninja"></i>
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M7 9h10v3H7z" fill="currentColor"/><circle cx="9" cy="10.5" r="1" fill="#000"/><circle cx="15" cy="10.5" r="1" fill="#000"/></svg>
                             </div>
-                            <span class="card-tag tag-red">Live Course</span>
+                            <span class="card-tag tag-green">Live Course</span>
                         </div>
                         <div class="card-body">
                             <h3>Ethical Hacking Course</h3>
                             <p>Master Penetration Testing, Cyber Security fundamentals, and Ethical Hacking labs.</p>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <span>Access Course</span> <i class="fa-solid fa-arrow-right"></i>
-                    </div>
+                    <div class="card-footer"><span>Access Course</span> &rarr;</div>
                 </a>
 
-                <!-- Free Earning Portal Card -->
                 <a href="https://openinapp.link/b8yq5" target="_blank" class="glass-card">
                     <div>
                         <div class="card-top">
-                            <!-- Official Earning Portal Logo -->
                             <div class="brand-logo-box logo-earning">
-                                <i class="fa-solid fa-sack-dollar"></i>
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 4.48 2 12 2zm1 14.93c1.92-.4 3.32-2.02 3.32-3.93 0-2.21-1.79-3.2-4.32-3.8-1.88-.45-2.32-.97-2.32-1.7 0-.82.78-1.39 2.02-1.39 1.14 0 2.11.45 2.58 1.13l1.53-.98C15.11 5.11 13.68 4.3 12 4.12V3h-2v1.1c-2.12.33-3.62 1.83-3.62 3.73 0 2.24 1.79 3.2 4.3 3.81 1.8.43 2.32 1.05 2.32 1.76 0 .89-.88 1.49-2.16 1.49-1.49 0-2.58-.62-3.15-1.55l-1.57.92c.81 1.42 2.37 2.34 4.18 2.57V18h2v-1.07z"/></svg>
                             </div>
                             <span class="card-tag tag-green">Verified</span>
                         </div>
@@ -480,75 +402,302 @@
                             <p>Discover real online earning tasks, reward platforms, and verified payouts.</p>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <span>Visit Portal</span> <i class="fa-solid fa-arrow-right"></i>
-                    </div>
+                    <div class="card-footer"><span>Visit Portal</span> &rarr;</div>
                 </a>
-
             </div>
         </section>
 
-        <!-- Section 2: YouTube Channels -->
-        <section class="section" id="youtube">
-            <div class="section-header">
-                <h2>YouTube Channels</h2>
-                <p>Watch full video tutorials, tech reviews, and quick tips.</p>
-            </div>
-            <div class="cards-grid">
-                
-                <!-- YouTube Main Channel Card -->
-                <a href="https://yt.openinapp.co/raehk" target="_blank" class="glass-card">
-                    <div>
-                        <div class="card-top">
-                            <!-- Official YouTube Logo -->
-                            <div class="brand-logo-box logo-youtube">
-                                <i class="fa-brands fa-youtube"></i>
-                            </div>
-                            <span class="card-tag tag-red">Main Channel</span>
-                        </div>
-                        <div class="card-body">
-                            <h3>Main YouTube Channel</h3>
-                            <p>In-depth tech tutorials, ethical hacking tricks, and video guides.</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span>Subscribe Channel</span> <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </a>
-
-                <!-- YouTube Second Channel Card -->
-                <a href="https://yt.openinapp.co/e56aw" target="_blank" class="glass-card">
-                    <div>
-                        <div class="card-top">
-                            <!-- Official YouTube Shorts Logo -->
-                            <div class="brand-logo-box logo-youtube">
-                                <i class="fa-brands fa-youtube"></i>
-                            </div>
-                            <span class="card-tag tag-blue">Secondary</span>
-                        </div>
-                        <div class="card-body">
-                            <h3>Second YouTube Channel</h3>
-                            <p>Short tips, quick tech updates, and exclusive channel announcements.</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span>Watch Shorts</span> <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </a>
-
-            </div>
-        </section>
-
-        <!-- Section 3: Social Communities -->
+        <!-- Social Network Section -->
         <section class="section" id="community">
             <div class="section-header">
                 <h2>Join Our Social Network</h2>
-                <p>Stay connected with us across all social platforms.</p>
+                <p>Instant loading links to all official social channels.</p>
             </div>
             <div class="cards-grid">
-                
-                <!-- Telegram Channel Card -->
                 <a href="https://telegram.openinapp.co/1d61o" target="_blank" class="glass-card">
                     <div>
                         <div class="card-top">
-                            <!-- Official Telegram
+                            <div class="brand-logo-box logo-telegram">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.94-1.28 4.91-2.12 5.9-2.52 2.82-1.17 3.4-1.38 3.78-1.38.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+                            </div>
+                            <span class="card-tag tag-blue">Community</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Telegram Channel</h3>
+                            <p>Instant alerts, direct links, course updates, and exclusive community chat.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer"><span>Join Telegram</span> &rarr;</div>
+                </a>
+
+                <a href="https://openinapp.link/9z4dt" target="_blank" class="glass-card">
+                    <div>
+                        <div class="card-top">
+                            <div class="brand-logo-box logo-whatsapp">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 16.67c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.188 8.188 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.184 8.184 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.22 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.77 2.7 4.28 3.79.6.26 1.06.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.3z"/></svg>
+                            </div>
+                            <span class="card-tag tag-green">Updates</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>WhatsApp Channel</h3>
+                            <p>Receive immediate announcements and updates directly on WhatsApp.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer"><span>Follow Channel</span> &rarr;</div>
+                </a>
+
+                <a href="https://insta.openinapp.co/s1mgk" target="_blank" class="glass-card">
+                    <div>
+                        <div class="card-top">
+                            <div class="brand-logo-box logo-instagram">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </div>
+                            <span class="card-tag tag-blue">Official</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Instagram Profile</h3>
+                            <p>Daily tech reels, infographics, behind-the-scenes content, and stories.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer"><span>Follow Profile</span> &rarr;</div>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 <strong>The New Tips</strong>. High Performance Native 3D Engine.</p>
+        </footer>
+    </div>
+
+    <!-- Enhanced Dual-Layer 3D Engine Canvas Script -->
+    <script>
+        const canvas = document.getElementById('canvas-3d');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Mouse Interactivity
+        let mouseX = 0, mouseY = 0;
+        let targetRotX = 0, targetRotY = 0;
+        let rotX = 0, rotY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - width / 2) / (width / 2);
+            mouseY = (e.clientY - height / 2) / (height / 2);
+            targetRotY = mouseX * 1.2;
+            targetRotX = -mouseY * 1.2;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouseX = (e.touches[0].clientX - width / 2) / (width / 2);
+                mouseY = (e.touches[0].clientY - height / 2) / (height / 2);
+                targetRotY = mouseX * 1.2;
+                targetRotX = -mouseY * 1.2;
+            }
+        });
+
+        // 1. Outer Geometry: Torus Knot
+        const torusPoints = [];
+        const p = 2, q = 3;
+        const totalPoints = 220;
+        const R = 135, r = 42;
+
+        for (let i = 0; i < totalPoints; i++) {
+            let phi = (i / totalPoints) * Math.PI * 2 * p;
+            let theta = (i / totalPoints) * Math.PI * 2 * q;
+
+            let x = (R + r * Math.cos(theta)) * Math.cos(phi);
+            let y = (R + r * Math.cos(theta)) * Math.sin(phi);
+            let z = r * Math.sin(theta);
+
+            torusPoints.push({ x, y, z });
+        }
+
+        // 2. Inner Geometry: Rotating 3D Core Sphere
+        const corePoints = [];
+        const coreLayers = 12;
+        const ptsPerLayer = 16;
+        const coreRadius = 55;
+
+        for (let i = 0; i < coreLayers; i++) {
+            let lat = (i / (coreLayers - 1)) * Math.PI - Math.PI / 2;
+            for (let j = 0; j < ptsPerLayer; j++) {
+                let lon = (j / ptsPerLayer) * Math.PI * 2;
+                let x = coreRadius * Math.cos(lat) * Math.cos(lon);
+                let y = coreRadius * Math.cos(lat) * Math.sin(lon);
+                let z = coreRadius * Math.sin(lat);
+                corePoints.push({ x, y, z });
+            }
+        }
+
+        // 3. Cyber Dust Floating Particles
+        const particles = [];
+        for (let i = 0; i < 110; i++) {
+            particles.push({
+                x: (Math.random() - 0.5) * width * 1.8,
+                y: (Math.random() - 0.5) * height * 1.8,
+                z: Math.random() * 800 - 400,
+                color: Math.random() > 0.5 ? '#00ff66' : (Math.random() > 0.5 ? '#00f2fe' : '#ff0055'),
+                size: Math.random() * 2.5 + 1
+            });
+        }
+
+        let gridOffset = 0;
+        let autoAngle = 0;
+
+        function render() {
+            ctx.clearRect(0, 0, width, height);
+
+            rotX += (targetRotX - rotX) * 0.05;
+            rotY += (targetRotY - rotY) * 0.05;
+            autoAngle += 0.014;
+
+            const cx = width / 2;
+            const cy = height / 2 - 10;
+            const fov = 320;
+            const horizon = height * 0.65;
+
+            // --- A. Draw 3D Grid Floor with Neon Glow ---
+            ctx.save();
+            gridOffset = (gridOffset + 1.4) % 40;
+
+            for (let x = -width; x < width * 2; x += 60) {
+                ctx.beginPath();
+                ctx.moveTo(cx + (x - cx) * 0.1, horizon);
+                ctx.lineTo(x, height);
+                ctx.strokeStyle = 'rgba(0, 242, 254, 0.12)';
+                ctx.stroke();
+            }
+
+            for (let z = 10; z < 400; z += 35) {
+                let currentZ = (z + gridOffset) % 400;
+                let scale = fov / (fov + currentZ);
+                let yPos = horizon + (height - horizon) * (1 - scale * 0.8);
+
+                ctx.beginPath();
+                ctx.moveTo(0, yPos);
+                ctx.lineTo(width, yPos);
+                ctx.strokeStyle = `rgba(0, 255, 102, ${scale * 0.35})`;
+                ctx.stroke();
+            }
+            ctx.restore();
+
+            // --- B. Draw Floating Particles ---
+            for (let p of particles) {
+                p.z -= 1.0;
+                if (p.z < -fov) p.z = fov;
+
+                let scale = fov / (fov + p.z);
+                let px = p.x * scale + cx;
+                let py = p.y * scale + cy;
+
+                if (px > 0 && px < width && py > 0 && py < height) {
+                    ctx.beginPath();
+                    ctx.arc(px, py, p.size * scale, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = Math.min(scale * 0.9, 1);
+                    ctx.fill();
+                }
+            }
+
+            // Function for 3D Rotation Projection
+            function project(pt, rx, ry) {
+                let x1 = pt.x * Math.cos(ry) - pt.z * Math.sin(ry);
+                let z1 = pt.x * Math.sin(ry) + pt.z * Math.cos(ry);
+
+                let y2 = pt.y * Math.cos(rx) - z1 * Math.sin(rx);
+                let z2 = pt.y * Math.sin(rx) + z1 * Math.cos(rx);
+
+                let scale = fov / (fov + z2 + 120);
+                return {
+                    x: x1 * scale + cx,
+                    y: y2 * scale + cy,
+                    z: z2,
+                    scale: scale
+                };
+            }
+
+            // --- C. Draw Outer Highlighted 3D Torus Knot ---
+            const projectedTorus = torusPoints.map(pt => project(pt, rotX, autoAngle + rotY));
+
+            ctx.save();
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = '#00ff66';
+
+            for (let i = 0; i < projectedTorus.length; i++) {
+                let p1 = projectedTorus[i];
+                let p2 = projectedTorus[(i + 1) % projectedTorus.length];
+                let p3 = projectedTorus[(i + 4) % projectedTorus.length];
+
+                let alpha = (p1.z + 160) / 320;
+                alpha = Math.max(0.15, Math.min(alpha, 0.95));
+
+                ctx.beginPath();
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = i % 3 === 0 ? '#ff0055' : (i % 2 === 0 ? '#00ff66' : '#00f2fe');
+                ctx.globalAlpha = alpha;
+                ctx.lineWidth = 2.2 * p1.scale;
+                ctx.stroke();
+
+                if (i % 2 === 0) {
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p3.x, p3.y);
+                    ctx.strokeStyle = 'rgba(0, 242, 254, 0.35)';
+                    ctx.lineWidth = 1.0;
+                    ctx.stroke();
+                }
+
+                ctx.beginPath();
+                ctx.arc(p1.x, p1.y, 3 * p1.scale, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffffff';
+                ctx.globalAlpha = alpha;
+                ctx.fill();
+            }
+            ctx.restore();
+
+            // --- D. Draw Inner Counter-Rotating 3D Crystal Core ---
+            const projectedCore = corePoints.map(pt => project(pt, -rotX, -autoAngle * 1.5 + rotY));
+
+            ctx.save();
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#00f2fe';
+
+            for (let i = 0; i < projectedCore.length; i++) {
+                let p1 = projectedCore[i];
+                let alpha = (p1.z + 100) / 200;
+                alpha = Math.max(0.2, Math.min(alpha, 0.85));
+
+                ctx.beginPath();
+                ctx.arc(p1.x, p1.y, 2 * p1.scale, 0, Math.PI * 2);
+                ctx.fillStyle = '#00f2fe';
+                ctx.globalAlpha = alpha;
+                ctx.fill();
+
+                if (i % 4 === 0 && i + 1 < projectedCore.length) {
+                    let p2 = projectedCore[i + 1];
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                }
+            }
+            ctx.restore();
+
+            requestAnimationFrame(render);
+        }
+
+        render();
+    </script>
+</body>
+</html>
